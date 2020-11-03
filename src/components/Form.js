@@ -1,27 +1,37 @@
 import React from "react";
 
 const Form = (props) => {
-  const [hour, setHour] = React.useState("00");
-  const [minute, setMinute] = React.useState("00");
-  const [second, setSecond] = React.useState("00");
+  const [hour, setHour] = React.useState(0);
+  const [minute, setMinute] = React.useState(0);
+  const [second, setSecond] = React.useState(0);
 
-  function startTimer(hour, minute, second) {
-
-  }
+  const milliseconds = (hour * 60 * 60 + minute * 60 + second) * 1000;
 
   return (
     <React.Fragment>
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.onSubmit(milliseconds);
+        }}
+      >
         <label className="time-data">
           {" "}
           Hours
-          <input onChange={(e) => setHour(e.target.value)} value={hour}></input>
+          <input
+            type="number"
+            min={0}
+            onChange={(e) => setHour(Number(e.target.value))}
+            value={hour}
+          ></input>
         </label>
         <label className="time-data">
           {" "}
           Minutes
           <input
-            onChange={(e) => setMinute(e.target.value)}
+            type="number"
+            min={0}
+            onChange={(e) => setMinute(+e.target.value)}
             value={minute}
           ></input>
         </label>
@@ -29,12 +39,14 @@ const Form = (props) => {
           {" "}
           Seconds
           <input
-            onChange={(e) => setSecond(e.target.value)}
+            type="number"
+            min={0}
+            onChange={(e) => setSecond(parseInt(e.target.value))}
             value={second}
           ></input>
         </label>
         <div>
-          <button onClick={() => startTimer()}>Start Timer</button>
+          <button type="submit">Start Timer</button>
         </div>
       </form>
     </React.Fragment>

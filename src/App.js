@@ -66,7 +66,7 @@ function App() {
         }}
       />
 
-      <div>
+      <div className="counter-data">
         <p className="counter">{hoursLeft} Hours</p>
         <p className="counter">{minutesLeft} Minutes</p>
         <p className="counter">{secondsLeft} Seconds</p>

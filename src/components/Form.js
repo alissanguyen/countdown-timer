@@ -15,36 +15,44 @@ const Form = (props) => {
           props.onSubmit(milliseconds);
         }}
       >
-        <label className="time-data">
-          {" "}
-          Hours
-          <input
-            type="number"
-            min={0}
-            onChange={(e) => setHour(Number(e.target.value))}
-            value={hour}
-          ></input>
-        </label>
-        <label className="time-data">
-          {" "}
-          Minutes
-          <input
-            type="number"
-            min={0}
-            onChange={(e) => setMinute(+e.target.value)}
-            value={minute}
-          ></input>
-        </label>
-        <label className="time-data">
-          {" "}
-          Seconds
-          <input
-            type="number"
-            min={0}
-            onChange={(e) => setSecond(parseInt(e.target.value))}
-            value={second}
-          ></input>
-        </label>
+        <div className="text-inputs-wrapper">
+          <div className="input-wrapper">
+            <input
+              id="hour-input"
+              type="number"
+              min={0}
+              onChange={(e) => setHour(Number(e.target.value))}
+              value={hour}
+            ></input>
+            <label htmlFor="hour-input" className="time-data">
+              Hours
+            </label>
+          </div>
+          <div className="input-wrapper">
+            <input
+              id="minute-input"
+              type="number"
+              min={0}
+              onChange={(e) => setMinute(+e.target.value)}
+              value={minute}
+            ></input>
+            <label htmlFor="minute-input" className="time-data">
+              Minutes
+            </label>
+          </div>{" "}
+          <div className="input-wrapper">
+            <input
+              id="second-input"
+              type="number"
+              min={0}
+              onChange={(e) => setSecond(parseInt(e.target.value))}
+              value={second}
+            ></input>
+            <label htmlFor="second-input" className="time-data">
+              Seconds
+            </label>
+          </div>
+        </div>
         <div>
           <button type="submit">Start Timer</button>
         </div>

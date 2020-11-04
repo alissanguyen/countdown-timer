@@ -3,10 +3,7 @@ import "./App.css";
 import Form from "./components/Form";
 import React from "react";
 
-
-
-const ANIMATION = "App-logo"
-
+const ANIMATION = "App-logo";
 
 function App() {
   const [timeLeft, setTimeLeft] = React.useState(0);
@@ -14,7 +11,6 @@ function App() {
   const intervalId = React.useRef(null);
 
   function countdown(milliseconds) {
-    console.log(milliseconds);
     if (intervalId.current) {
       clearInterval(intervalId.current);
     }
@@ -37,19 +33,43 @@ function App() {
     );
   }
 
+  const hoursLeft = Math.floor(timeLeft / (3600 * 1000));
+  const minutesLeft = Math.floor(
+    (timeLeft - hoursLeft * 3600 * 1000) / (60 * 1000)
+  );
+  const secondsLeft =
+    (timeLeft - hoursLeft * 3600 * 1000 - minutesLeft * 60 * 1000) / 1000;
+
+  console.log(
+    "hours",
+    hoursLeft,
+    "minutes",
+    minutesLeft,
+    "seconds",
+    secondsLeft
+  );
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} id="logo" className={intervalId.current ? ANIMATION : null} alt="logo" />
-        <p>Countdown Timer</p>
+        <img
+          src={logo}
+          id="logo"
+          className={intervalId.current ? ANIMATION : null}
+          alt="logo"
+        />
+        <h1 className="app-name">Countdown Timer</h1>
       </header>
-      {(intervalId.current == null) ? (<Form
+      <Form
         onSubmit={(milliseconds) => {
           countdown(milliseconds);
         }}
-      />) : null}
+      />
+
       <div>
-        <p>Time left: {timeLeft / 1000} </p>
+        <p className="counter">{hoursLeft} Hours</p>
+        <p className="counter">{minutesLeft} Minutes</p>
+        <p className="counter">{secondsLeft} Seconds</p>
       </div>
     </div>
   );

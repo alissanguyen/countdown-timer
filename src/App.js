@@ -40,15 +40,6 @@ function App() {
   const secondsLeft =
     (timeLeft - hoursLeft * 3600 * 1000 - minutesLeft * 60 * 1000) / 1000;
 
-  console.log(
-    "hours",
-    hoursLeft,
-    "minutes",
-    minutesLeft,
-    "seconds",
-    secondsLeft
-  );
-
   return (
     <div className="App">
       <header className="App-header">
